@@ -7,4 +7,12 @@ router.get('/', (req, res) => {
 	})
 })
 
+router.post('/file', (req, res) => {
+	let type = req.body.type || 'js'
+
+	res.json({
+		type,
+	})
+})
+
 module.exports = router
