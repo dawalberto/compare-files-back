@@ -7,8 +7,14 @@ router.get('/', (req, res) => {
 	})
 })
 
-router.post('/file', (req, res) => {
+router.post('/file', (req, res, next) => {
 	let type = req.body.type || 'js'
+
+	if (Number(type)) {
+		res.status(400).json({
+			error: 'file type cannot be a number',
+		})
+	}
 
 	res.json({
 		type,

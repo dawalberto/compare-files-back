@@ -32,5 +32,15 @@ describe('POST Endpoints', () => {
 			expect(res.body).toHaveProperty('type')
 			expect(res.body.type).toEqual('java')
 		})
+
+		it('numeric type should return 400 code', async () => {
+			const res = await request(app).post('/file').send({
+				type: 1,
+			})
+
+			expect(res.statusCode).toEqual(400)
+			expect(res.body).not.toHaveProperty('type')
+			expect(res.body).toHaveProperty('error')
+		})
 	})
 })
