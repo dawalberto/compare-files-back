@@ -14,9 +14,9 @@ describe('GET Endpoints', () => {
 })
 
 describe('POST Endpoints', () => {
-	describe('/file', () => {
+	describe('/files', () => {
 		it('type by default should be "js"', async () => {
-			const res = await request(app).post('/file')
+			const res = await request(app).post('/files')
 
 			expect(res.statusCode).toEqual(200)
 			expect(res.body).toHaveProperty('type')
@@ -24,7 +24,7 @@ describe('POST Endpoints', () => {
 		})
 
 		it('type should be "java"', async () => {
-			const res = await request(app).post('/file').send({
+			const res = await request(app).post('/files').send({
 				type: 'java',
 			})
 
@@ -34,7 +34,7 @@ describe('POST Endpoints', () => {
 		})
 
 		it('numeric type should return 400 code', async () => {
-			const res = await request(app).post('/file').send({
+			const res = await request(app).post('/files').send({
 				type: 1,
 			})
 
